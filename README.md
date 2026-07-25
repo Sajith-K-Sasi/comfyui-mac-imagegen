@@ -208,9 +208,20 @@ Drag any output back into ComfyUI and the workflow reconstitutes.
 
 ## Licences
 
-Both models are Apache 2.0 (Z-Image Turbo; FLUX.2 Klein **4B** — note the 9B is not).
-The workflows and scripts here are MIT. Model licences govern the weights and are not
-altered by this repo.
+This repo (workflows, scripts, docs) is **MIT** — see [LICENSE](LICENSE).
+
+Model weights carry their own licences, verified against the Hugging Face model cards:
+
+| Model | Licence |
+|---|---|
+| FLUX.2 Klein **4B** (used here) | Apache 2.0 |
+| Z-Image Turbo | Apache 2.0 |
+| Z-Image (base) | Apache 2.0 |
+| Qwen3-4B text encoder | Apache 2.0 |
+| RealESRGAN | BSD-3-Clause |
+
+**FLUX.2 Klein 9B is _not_ Apache 2.0** — it ships under a non-commercial licence.
+Only the 4B variant used here is permissively licensed.
 
 Local generation is unmoderated — nothing here inspects prompts or filters output. That
 also means responsibility sits entirely with you.
