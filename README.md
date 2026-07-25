@@ -1,6 +1,6 @@
 # Local image generation on Apple Silicon — ComfyUI workflows for Z-Image + FLUX.2 Klein
 
-Six working ComfyUI workflows, four CLI scripts, and a one-command model downloader for
+Seven working ComfyUI workflows, four CLI scripts, and a one-command model downloader for
 running **Z-Image Turbo** and **FLUX.2 Klein 4B** locally on a Mac. No GPU, no API key,
 nothing uploaded.
 
