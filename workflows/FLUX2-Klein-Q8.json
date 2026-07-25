@@ -1,0 +1,556 @@
+{
+ "last_node_id": 12,
+ "last_link_id": 11,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UnetLoaderGGUF",
+   "pos": [
+    40,
+    40
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      1
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UnetLoaderGGUF"
+   },
+   "widgets_values": [
+    "flux-2-klein-4b-Q8_0.gguf"
+   ]
+  },
+  {
+   "id": 2,
+   "type": "CLIPLoaderGGUF",
+   "pos": [
+    40,
+    200
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      2
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoaderGGUF"
+   },
+   "widgets_values": [
+    "Qwen_3_4b-Q6_K.gguf",
+    "flux2"
+   ]
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "pos": [
+    40,
+    380
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      10
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "flux2-vae.safetensors"
+   ]
+  },
+  {
+   "id": 4,
+   "type": "CLIPTextEncode",
+   "pos": [
+    400,
+    200
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 2
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      3
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    "A photorealistic close-up of a red fox sitting in fresh snow at golden hour, soft rim light, shallow depth of field, and a small wooden sign beside it that reads \"FLUX.2 KLEIN\"."
+   ]
+  },
+  {
+   "id": 5,
+   "type": "EmptyFlux2LatentImage",
+   "pos": [
+    400,
+    460
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      8
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "EmptyFlux2LatentImage"
+   },
+   "widgets_values": [
+    1024,
+    1024,
+    1
+   ]
+  },
+  {
+   "id": 6,
+   "type": "Flux2Scheduler",
+   "pos": [
+    400,
+    640
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "SIGMAS",
+     "type": "SIGMAS",
+     "links": [
+      7
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "Flux2Scheduler"
+   },
+   "widgets_values": [
+    4,
+    1024,
+    1024
+   ]
+  },
+  {
+   "id": 7,
+   "type": "KSamplerSelect",
+   "pos": [
+    400,
+    840
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "sampler_name",
+     "type": "COMBO",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "name": "SAMPLER",
+     "type": "SAMPLER",
+     "links": [
+      6
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSamplerSelect"
+   },
+   "widgets_values": [
+    "euler"
+   ]
+  },
+  {
+   "id": 8,
+   "type": "RandomNoise",
+   "pos": [
+    400,
+    960
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "NOISE",
+     "type": "NOISE",
+     "links": [
+      4
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "RandomNoise"
+   },
+   "widgets_values": [
+    42,
+    "randomize"
+   ]
+  },
+  {
+   "id": 9,
+   "type": "BasicGuider",
+   "pos": [
+    820,
+    120
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 1
+    },
+    {
+     "name": "conditioning",
+     "type": "CONDITIONING",
+     "link": 3
+    }
+   ],
+   "outputs": [
+    {
+     "name": "GUIDER",
+     "type": "GUIDER",
+     "links": [
+      5
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "BasicGuider"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 10,
+   "type": "SamplerCustomAdvanced",
+   "pos": [
+    1080,
+    120
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "noise",
+     "type": "NOISE",
+     "link": 4
+    },
+    {
+     "name": "guider",
+     "type": "GUIDER",
+     "link": 5
+    },
+    {
+     "name": "sampler",
+     "type": "SAMPLER",
+     "link": 6
+    },
+    {
+     "name": "sigmas",
+     "type": "SIGMAS",
+     "link": 7
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 8
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output",
+     "type": "LATENT",
+     "links": [
+      9
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "denoised_output",
+     "type": "LATENT",
+     "links": [
+      9
+     ],
+     "slot_index": 1
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SamplerCustomAdvanced"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 11,
+   "type": "VAEDecode",
+   "pos": [
+    1360,
+    120
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 9
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 10
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      11
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 12,
+   "type": "SaveImage",
+   "pos": [
+    1600,
+    120
+   ],
+   "size": [
+    300,
+    120
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 11
+    }
+   ],
+   "outputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "links": null,
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "widgets_values": [
+    "flux2_klein"
+   ]
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   9,
+   0,
+   "MODEL"
+  ],
+  [
+   2,
+   2,
+   0,
+   4,
+   0,
+   "CLIP"
+  ],
+  [
+   3,
+   4,
+   0,
+   9,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   4,
+   8,
+   0,
+   10,
+   0,
+   "NOISE"
+  ],
+  [
+   5,
+   9,
+   0,
+   10,
+   1,
+   "GUIDER"
+  ],
+  [
+   6,
+   7,
+   0,
+   10,
+   2,
+   "SAMPLER"
+  ],
+  [
+   7,
+   6,
+   0,
+   10,
+   3,
+   "SIGMAS"
+  ],
+  [
+   8,
+   5,
+   0,
+   10,
+   4,
+   "LATENT"
+  ],
+  [
+   9,
+   10,
+   0,
+   11,
+   0,
+   "LATENT"
+  ],
+  [
+   10,
+   3,
+   0,
+   11,
+   1,
+   "VAE"
+  ],
+  [
+   11,
+   11,
+   0,
+   12,
+   0,
+   "IMAGE"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {},
+ "version": 0.4
+}
