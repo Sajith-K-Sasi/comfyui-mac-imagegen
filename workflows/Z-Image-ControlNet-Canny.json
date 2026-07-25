@@ -1,0 +1,754 @@
+{
+ "id": "z-image-controlnet-canny",
+ "revision": 0,
+ "last_node_id": 100,
+ "last_link_id": 17,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UnetLoaderGGUF",
+   "pos": [
+    20,
+    40
+   ],
+   "size": [
+    340,
+    60
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      1
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UnetLoaderGGUF"
+   },
+   "widgets_values": [
+    "z-image-turbo-Q6_K.gguf"
+   ]
+  },
+  {
+   "id": 2,
+   "type": "CLIPLoaderGGUF",
+   "pos": [
+    20,
+    140
+   ],
+   "size": [
+    340,
+    82
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      5,
+      6
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoaderGGUF"
+   },
+   "widgets_values": [
+    "Qwen_3_4b-Q6_K.gguf",
+    "lumina2"
+   ]
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "pos": [
+    20,
+    260
+   ],
+   "size": [
+    340,
+    60
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      3,
+      4
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "z_image_ae.safetensors"
+   ]
+  },
+  {
+   "id": 40,
+   "type": "ModelPatchLoader",
+   "pos": [
+    20,
+    360
+   ],
+   "size": [
+    340,
+    60
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL_PATCH",
+     "type": "MODEL_PATCH",
+     "links": [
+      2
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ModelPatchLoader"
+   },
+   "widgets_values": [
+    "Z-Image-Turbo-Fun-Controlnet-Union.safetensors"
+   ]
+  },
+  {
+   "id": 30,
+   "type": "LoadImage",
+   "pos": [
+    20,
+    470
+   ],
+   "size": [
+    340,
+    320
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      7
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": null,
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "example.png",
+    "image"
+   ]
+  },
+  {
+   "id": 31,
+   "type": "ImageScaleToMaxDimension",
+   "pos": [
+    400,
+    470
+   ],
+   "size": [
+    300,
+    82
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "link": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      8
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ImageScaleToMaxDimension"
+   },
+   "widgets_values": [
+    "lanczos",
+    1024
+   ]
+  },
+  {
+   "id": 32,
+   "type": "Canny",
+   "pos": [
+    400,
+    590
+   ],
+   "size": [
+    300,
+    82
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "link": 8
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      9,
+      10
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "Canny"
+   },
+   "widgets_values": [
+    "0.10",
+    "0.32"
+   ]
+  },
+  {
+   "id": 33,
+   "type": "PreviewImage",
+   "pos": [
+    400,
+    710
+   ],
+   "size": [
+    300,
+    260
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 10
+    }
+   ],
+   "outputs": [],
+   "properties": {
+    "Node name for S&R": "PreviewImage"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 41,
+   "type": "QwenImageDiffsynthControlnet",
+   "pos": [
+    740,
+    40
+   ],
+   "size": [
+    320,
+    120
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 1
+    },
+    {
+     "name": "model_patch",
+     "type": "MODEL_PATCH",
+     "link": 2
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 3
+    },
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "link": 9
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      11
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "QwenImageDiffsynthControlnet"
+   },
+   "widgets_values": [
+    0.5
+   ]
+  },
+  {
+   "id": 4,
+   "type": "CLIPTextEncode",
+   "pos": [
+    740,
+    200
+   ],
+   "size": [
+    380,
+    140
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 5
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      12
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    "a cozy isometric bookshop interior, tall wooden shelves packed with colourful books, warm afternoon light, cute stylised game art, clean flat colours"
+   ]
+  },
+  {
+   "id": 5,
+   "type": "CLIPTextEncode",
+   "pos": [
+    740,
+    370
+   ],
+   "size": [
+    380,
+    90
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 6
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      13
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    ""
+   ]
+  },
+  {
+   "id": 50,
+   "type": "ConditioningZeroOut",
+   "pos": [
+    740,
+    490
+   ],
+   "size": [
+    380,
+    50
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "conditioning",
+     "type": "CONDITIONING",
+     "link": 13
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      14
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ConditioningZeroOut"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 6,
+   "type": "EmptySD3LatentImage",
+   "pos": [
+    740,
+    570
+   ],
+   "size": [
+    380,
+    110
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      15
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "EmptySD3LatentImage"
+   },
+   "widgets_values": [
+    1024,
+    1024,
+    1
+   ]
+  },
+  {
+   "id": 10,
+   "type": "KSampler",
+   "pos": [
+    1160,
+    40
+   ],
+   "size": [
+    330,
+    262
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 11
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 12
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 14
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 15
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      16
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    0,
+    "randomize",
+    8,
+    1.0,
+    "res_multistep",
+    "simple",
+    1.0
+   ]
+  },
+  {
+   "id": 11,
+   "type": "VAEDecode",
+   "pos": [
+    1160,
+    340
+   ],
+   "size": [
+    330,
+    60
+   ],
+   "flags": {},
+   "order": 14,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 16
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 4
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      17
+     ],
+     "slot_index": 0
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 12,
+   "type": "SaveImage",
+   "pos": [
+    1160,
+    430
+   ],
+   "size": [
+    400,
+    400
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 17
+    }
+   ],
+   "outputs": [],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "widgets_values": [
+    "z-image-controlnet"
+   ]
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   41,
+   0,
+   "MODEL"
+  ],
+  [
+   2,
+   40,
+   0,
+   41,
+   1,
+   "MODEL_PATCH"
+  ],
+  [
+   3,
+   3,
+   0,
+   41,
+   2,
+   "VAE"
+  ],
+  [
+   4,
+   3,
+   0,
+   11,
+   1,
+   "VAE"
+  ],
+  [
+   5,
+   2,
+   0,
+   4,
+   0,
+   "CLIP"
+  ],
+  [
+   6,
+   2,
+   0,
+   5,
+   0,
+   "CLIP"
+  ],
+  [
+   7,
+   30,
+   0,
+   31,
+   0,
+   "IMAGE"
+  ],
+  [
+   8,
+   31,
+   0,
+   32,
+   0,
+   "IMAGE"
+  ],
+  [
+   9,
+   32,
+   0,
+   41,
+   3,
+   "IMAGE"
+  ],
+  [
+   10,
+   32,
+   0,
+   33,
+   0,
+   "IMAGE"
+  ],
+  [
+   11,
+   41,
+   0,
+   10,
+   0,
+   "MODEL"
+  ],
+  [
+   12,
+   4,
+   0,
+   10,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   13,
+   5,
+   0,
+   50,
+   0,
+   "CONDITIONING"
+  ],
+  [
+   14,
+   50,
+   0,
+   10,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   15,
+   6,
+   0,
+   10,
+   3,
+   "LATENT"
+  ],
+  [
+   16,
+   10,
+   0,
+   11,
+   0,
+   "LATENT"
+  ],
+  [
+   17,
+   11,
+   0,
+   12,
+   0,
+   "IMAGE"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {},
+ "version": 0.4
+}

@@ -71,6 +71,9 @@ The VAEs are **not** interchangeable — different latent formats.
 | `Z-Image-Turbo-T2I.json` | Text-to-image, cleaner output |
 | `Z-Image-PixelArt.json` | Sprites (expects a pixel-art LoRA, see below) |
 | `Z-Image-2K-Upscaler.json` | 1024 → 2048 |
+| `Z-Image-ControlNet-Canny.json` | Structure control — keep a layout or pose, change the content |
+
+`Z-Image-ControlNet-Canny.json` ships with **strength 0.5**, not the template default of 1.0 — see the ControlNet section below for why.
 
 `Z-Image-PixelArt.json` references `pixel_art_style_z_image_turbo.safetensors` — not
 included (third-party LoRA). Grab any Z-Image pixel-art LoRA into `models/loras/` and point
