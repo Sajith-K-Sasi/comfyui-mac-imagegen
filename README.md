@@ -206,6 +206,13 @@ workflow = json.loads(Image.open("output/foo.png").info["prompt"])
 
 Drag any output back into ComfyUI and the workflow reconstitutes.
 
+## The write-up
+
+[`blog/`](blog/) has the full write-up these settings came from — the measurements,
+the things that turned out wrong, and the side-by-side comparisons.
+
+---
+
 ## Licences
 
 This repo (workflows, scripts, docs) is **MIT** — see [LICENSE](LICENSE).
