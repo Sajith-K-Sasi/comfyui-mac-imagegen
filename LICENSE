@@ -19,19 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-This licence covers only the workflows, scripts and documentation in this
-repository. It does not cover the model weights, which are downloaded from
-third parties and carry their own licences:
-
-  FLUX.2 Klein 4B ....... Apache 2.0
-  Z-Image Turbo ......... Apache 2.0
-  Z-Image (base) ........ Apache 2.0
-  RealESRGAN ............ BSD-3-Clause (upstream xinntao/Real-ESRGAN)
-  Qwen3-4B text encoder . Apache 2.0
-
-Note: FLUX.2 Klein **9B** is NOT Apache 2.0 — it ships under a non-commercial
-licence. Only the 4B variant used here is permissively licensed. Verify the
-model card before using any variant commercially.

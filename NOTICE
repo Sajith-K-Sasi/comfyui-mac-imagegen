@@ -1,0 +1,15 @@
+This repository (workflows, scripts, documentation) is MIT licensed — see LICENSE.
+
+It does NOT include or relicense any model weights. Weights are downloaded from
+third parties by download-models.sh and carry their own licences, verified against
+the Hugging Face model cards:
+
+  FLUX.2 Klein 4B ......... Apache 2.0    black-forest-labs/FLUX.2-klein-4B
+  Z-Image Turbo ........... Apache 2.0    Tongyi-MAI/Z-Image-Turbo
+  Z-Image (base) .......... Apache 2.0    Tongyi-MAI/Z-Image
+  Qwen3-4B text encoder ... Apache 2.0    Qwen/Qwen3-4B
+  RealESRGAN .............. BSD-3-Clause  xinntao/Real-ESRGAN
+
+FLUX.2 Klein 9B is NOT Apache 2.0 — it ships under a non-commercial licence.
+Only the 4B variant used by these workflows is permissively licensed. Check the
+model card before using any variant commercially.
