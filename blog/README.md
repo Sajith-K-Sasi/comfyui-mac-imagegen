@@ -279,8 +279,6 @@ A fanless laptop with no GPU now creates, edits, and upscales images locally, in
 
 Everything here — workflows, download script, CLI tools — is in [this repo](https://github.com/Sajith-K-Sasi/comfyui-mac-imagegen).
 
-The full-resolution originals behind these comparisons are in [`blog/originals/`](originals/). Each one carries its complete ComfyUI workflow in the PNG metadata — drag it onto the canvas and the exact settings come back.
-
 ---
 
 *All timings measured on an M5 MacBook Air, 24 GB, ComfyUI 0.28.0, PyTorch 2.13, MPS, Python 3.14. Every image in this post was generated on that machine.*
