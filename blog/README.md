@@ -27,10 +27,10 @@ Total download: **~20 GB**. Setup time: about an hour, mostly waiting.
 
 ## Step 1: Install ComfyUI
 
-[ComfyUI](https://github.com/comfyanonymous/ComfyUI) is the node editor that runs the models.
+[ComfyUI](https://github.com/Comfy-Org/ComfyUI) is the node editor that runs the models.
 
 ```bash
-git clone https://github.com/comfyanonymous/ComfyUI
+git clone https://github.com/Comfy-Org/ComfyUI
 cd ComfyUI
 python3 -m venv venv
 source venv/bin/activate

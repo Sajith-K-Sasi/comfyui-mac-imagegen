@@ -20,7 +20,7 @@ Every setting here was verified by running it, not copied from a model card.
 
 - Apple Silicon Mac, **24 GB unified memory recommended** (16 GB will thrash — free memory
   bottomed at 1.99 GB during upscaling here)
-- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) with the
+- [ComfyUI](https://github.com/Comfy-Org/ComfyUI) with the
   [ComfyUI-GGUF](https://github.com/city96/ComfyUI-GGUF) custom node (all models here are GGUF)
 - ~20 GB free disk
 
