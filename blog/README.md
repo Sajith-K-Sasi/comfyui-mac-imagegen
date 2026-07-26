@@ -10,6 +10,11 @@ This is the setup guide I wish I'd had. Everything below is verified on the mach
 
 Total download: **~20 GB**. Setup time: about an hour, mostly waiting.
 
+> **Everything in this guide — the seven ComfyUI workflows, the model downloader, and the CLI scripts — is here:**
+> **[github.com/Sajith-K-Sasi/comfyui-mac-imagegen](https://github.com/Sajith-K-Sasi/comfyui-mac-imagegen)**
+>
+> Clone it and skip to Step 3.
+
 ---
 
 # Part 1 — Setup
@@ -22,7 +27,7 @@ Total download: **~20 GB**. Setup time: about an hour, mostly waiting.
 
 ## Step 1: Install ComfyUI
 
-ComfyUI is the node editor that runs the models.
+[ComfyUI](https://github.com/comfyanonymous/ComfyUI) is the node editor that runs the models.
 
 ```bash
 git clone https://github.com/comfyanonymous/ComfyUI
@@ -42,7 +47,7 @@ python -c "import torch; print(torch.backends.mps.is_available())"
 
 ## Step 2: Add the GGUF loader
 
-Every model here is GGUF-quantised — that's what makes them fit in 24 GB. ComfyUI needs one custom node to read them.
+Every model here is GGUF-quantised — that's what makes them fit in 24 GB. ComfyUI needs [one custom node](https://github.com/city96/ComfyUI-GGUF) to read them.
 
 ```bash
 cd custom_nodes
