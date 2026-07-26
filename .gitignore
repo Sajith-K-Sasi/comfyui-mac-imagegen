@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# generated paste-source, not part of the guide
+blog/medium.html
